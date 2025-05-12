@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('CIF')->unique()->after('password');
+            $table->string('cif')->unique()->after('password');
             $table->string('phone')->after('CIF');
             $table->string('address')->after('phone');
         });
@@ -21,7 +21,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['CIF', 'phone', 'address']);
+            $table->dropColumn(['cif', 'phone', 'address']);
         });
     }
 };

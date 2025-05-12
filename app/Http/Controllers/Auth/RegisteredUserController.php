@@ -30,24 +30,26 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'CIF' => ['required', 'string', 'max:20', 'unique:users'],
-            'phone' => ['required', 'string', 'max:20'],
-            'address' => ['required', 'string', 'max:255'],
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|confirmed|min:8',
+            'cif' => 'required|string|max:50',
+            'phone' => 'required|string|max:20',
+            'address' => 'required|string|max:255',
         ]);
 
-        Auth::login($user = User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'CIF' => $request->CIF,
+            'CIF' => $request->cif,
             'phone' => $request->phone,
             'address' => $request->address,
-        ]));
+        ]);
 
-        return redirect('/') 
-            ->with('success', 'Usuario creado correctamente. Puedes iniciar sesión.');
+        Auth::login($user);
+
+        return redirect('/')->with('success', 'Usuario registrado, ya puedes iniciar sesión.');
     }
+
  }
