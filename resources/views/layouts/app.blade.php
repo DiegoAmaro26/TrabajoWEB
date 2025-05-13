@@ -15,7 +15,9 @@
         <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 relative">
             {{-- Logo --}}
             <div class="flex items-center relative z-10">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-12 w-auto" style="width:150px height=auto;">
+                <a href="{{ route('welcome') }}">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-12 w-auto" style="width:60px; height:auto;">
+                </a>
             </div>
 
             {{-- Diagonal Divider --}}

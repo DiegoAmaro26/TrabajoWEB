@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Models\Pet;
 
 class PetController extends Controller
 {
@@ -41,4 +42,11 @@ public function store(Request $request, Client $client)
 
     return redirect()->route('clients.index')->with('success', 'Mascota añadida correctamente.');
 }
+
+public function history(Pet $pet)
+{
+    $consultations = $pet->consultations()->latest()->get();
+    return view('pets.history', compact('pet', 'consultations'));
+}
+
 }

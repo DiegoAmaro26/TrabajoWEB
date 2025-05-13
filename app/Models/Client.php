@@ -7,16 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
     protected $fillable = [
-        'hospital_id', 'full_name', 'email', 'phone', 'address', 'photo'
+        'full_name', 'email', 'phone', 'address', 'photo', 'hospital_id'
     ];
 
+    // Relación inversa: un cliente pertenece a un hospital
     public function hospital()
     {
         return $this->belongsTo(User::class, 'hospital_id');
     }
 
+    // Relación con las mascotas
     public function pets()
     {
         return $this->hasMany(Pet::class);
     }
 }
+

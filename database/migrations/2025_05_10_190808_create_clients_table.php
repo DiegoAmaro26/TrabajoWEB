@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('hospital_id');
+            $table->unsignedBigInteger('hospital_id')->nullable();
             $table->string('full_name');
-            $table->string('email')->nullable();
+            $table->string('email');
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('photo')->nullable();

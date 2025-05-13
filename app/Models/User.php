@@ -9,6 +9,12 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    // Relación de uno a muchos con clientes
+    public function clients()
+    {
+        return $this->hasMany(Client::class, 'hospital_id');
+    }
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
@@ -26,12 +32,13 @@ class User extends Authenticatable
         'address',
     ];
 
+    
+
+    // Relación con empleados
     public function employees()
-{
-    return $this->hasMany(Employee::class, 'hospital_id');
-}
-
-
+    {
+        return $this->hasMany(Employee::class, 'hospital_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
