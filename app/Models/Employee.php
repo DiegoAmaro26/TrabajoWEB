@@ -22,4 +22,14 @@ class Employee extends Model
     {
         return $this->belongsTo(User::class, 'hospital_id');
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->attributes['full_name'];
+    }
 }

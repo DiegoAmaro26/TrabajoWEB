@@ -54,6 +54,13 @@ Route::middleware(['auth'])->group(function () {
 
 Route::post('/consultations/{id}/hospitalization', [HospitalizationNoteController::class, 'store'])->name('hospitalization.store');
 
+Route::resource('appointments', AppointmentController::class);
+Route::post('appointments', [AppointmentController::class, 'store'])->name('appointments.store');
+Route::get('appointments/create', [AppointmentController::class, 'create'])->name('appointments.create');
+Route::put('/appointments/{appointment}/mark-attended', [AppointmentController::class, 'markAttended'])->name('appointments.mark-attended');
+Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
+
+
 
 
 require __DIR__.'/auth.php';
