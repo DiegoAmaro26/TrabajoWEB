@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::post('clients/{client}/assign', [ClientController::class, 'assignHospital'])->name('clients.assign');
 });
 
+Route::resource('pets', PetController::class);
 Route::get('/pets/{pet}/history', [PetController::class, 'history'])->name('pets.history');
 
 Route::get('/consultations/create/{pet}', [ConsultationController::class, 'create'])->name('consultations.create');

@@ -63,6 +63,7 @@ class ClientController extends Controller
             return redirect()->route('clients.index')->with('error', 'No tienes acceso a este cliente.');
         }
 
+        $client->load('pets'); // Cargar las mascotas asociadas
         return view('clients.edit', compact('client'));
     }
 
