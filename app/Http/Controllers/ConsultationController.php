@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pet;
 use App\Models\Employee;
-use App\Models\Consultation;
 
 class ConsultationController extends Controller
 {

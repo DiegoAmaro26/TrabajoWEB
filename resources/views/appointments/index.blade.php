@@ -140,6 +140,10 @@
 </div>
 
 <script>
+    /**
+     * The function "mostrarDetalles" displays details of a pet appointment and configures action forms
+     * based on the data attributes of the provided element.
+     */
     function mostrarDetalles(elemento) {
         const petName = elemento.dataset.pet;
         const petId = elemento.dataset.petId;

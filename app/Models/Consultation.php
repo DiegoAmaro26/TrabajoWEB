@@ -23,6 +23,13 @@ class Consultation extends Model
         'tests' => 'array',
     ];
 
+  /**
+   * The code defines two functions in a PHP class, one to establish a relationship with a Pet model
+   * and another to retrieve multiple hospitalization notes related to the current model.
+   * 
+   * @return The `pet()` method returns a relationship where the current model belongs to a `Pet`
+   * model.
+   */
     public function pet()
     {
         return $this->belongsTo(Pet::class);

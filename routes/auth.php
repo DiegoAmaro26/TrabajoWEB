@@ -17,6 +17,8 @@ use App\Http\Controllers\BillingController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\PetController;
 
+/* This block of code is defining routes that are accessible only to guests (users who are not
+authenticated). Here's a breakdown of what each route does: */
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
@@ -41,6 +43,8 @@ Route::middleware('guest')->group(function () {
         ->name('password.store');
 });
 
+/* This block of code is defining routes that are accessible only to authenticated users (users who are
+logged in). Here's a breakdown of what each route does: */
 Route::middleware(['auth'])->group(function () {
     Route::get('/employees/create', [EmployeeController::class, 'create'])->name('employees.create');
     Route::post('/employees', [EmployeeController::class, 'store'])->name('employees.store');
@@ -57,6 +61,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/billing', [BillingController::class, 'index'])->name('billing.index');
 });
 
+/* This block of code is defining routes that are accessible only to authenticated users. Here's a
+breakdown of what each route does: */
 Route::middleware('auth')->group(function () {
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');

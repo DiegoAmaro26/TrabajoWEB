@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AppointmentController extends Controller
 {
+    /*
+     * Display a listing of the appointments.
+     */
     public function index(Request $request)
     {
         $selectedDate = $request->input('date', now()->format('Y-m-d'));
@@ -47,7 +50,7 @@ class AppointmentController extends Controller
         // Obtener empleados con el rol 'veterinario' del hospital del usuario autenticado
         // Aseguramos que el hospital_id de los empleados coincida con el id del usuario autenticado (hospital)
         $vets = Employee::where('role', 'veterinario')
-                        ->where('hospital_id', auth::id())  // Solo los veterinarios del hospital del usuario autenticado
+                        ->where('hospital_id', auth::id()) 
                         ->get();
 
         // Obtener todas las mascotas asociadas al usuario autenticado (clientes)
@@ -58,18 +61,12 @@ class AppointmentController extends Controller
         return view('appointments.create', compact('vets', 'pets'));
     }
 
+    /**
+     * Store a newly created appointment in storage.
+     */
+
     public function store(Request $request)
     {
-        /* $request->validate([
-            'employee_id' => 'required|exists:employees,id',
-            'pet_option' => 'required|in:registered,unregistered',
-            'appointment_date' => 'required|date',
-            'appointment_time' => 'nullable|date_format:H:i',
-            'duration' => 'nullable|integer',
-            'reason' => 'nullable|string|max:500',
-            'pet_id' => 'required_if:pet_option,registered|exists:pets,id',
-            'unregistered_pet_name' => 'required_if:pet_option,unregistered|string|max:255',
-        ]); */
 
         $appointment = new Appointment();
         $appointment->employee_id = $request->employee_id;
@@ -113,7 +110,6 @@ class AppointmentController extends Controller
             return redirect()->route('pets.history', $appointment->pet->id)->with('success', 'Cita atendida. Accediendo al historial de la mascota.');
         } else {
             // Si la mascota no está registrada, crear consulta directamente
-            // Aquí puedes crear la consulta directamente, y luego borrar la cita
             Consultation::create([
                 'pet_id' => $appointment->pet_id, // Mascota no registrada
                 'employee_id' => $appointment->employee_id,
@@ -126,6 +122,18 @@ class AppointmentController extends Controller
         }
     }
 
+    
+    /**
+     * The markAttended function marks a specific appointment as attended and redirects to the
+     * appointments index page with a success message.
+     * 
+     * @param id The `markAttended` function is used to mark an appointment as attended in the
+     * database. The function takes an `` parameter, which is the unique identifier of the
+     * appointment that needs to be marked as attended.
+     * 
+     * @return The `markAttended` function is returning a redirect response to the `appointments.index`
+     * route with a success message "Cita marcada como atendida."
+     */
     public function markAttended($id)
     {
         $appointment = Appointment::findOrFail($id);
@@ -135,6 +143,17 @@ class AppointmentController extends Controller
         return redirect()->route('appointments.index')->with('success', 'Cita marcada como atendida.');
     }
 
+    /**
+     * The `destroy` function deletes an appointment with the specified ID and redirects to the
+     * appointments index page with a success message.
+     * 
+     * @param id The `destroy` function you provided is used to delete an appointment with the given
+     * ID. The `` parameter represents the unique identifier of the appointment that needs to be
+     * deleted from the database.
+     * 
+     * @return The `destroy` function is returning a redirect response to the `appointments.index`
+     * route with a success message "Cita eliminada correctamente."
+     */
     public function destroy($id)
     {
         $appointment = Appointment::findOrFail($id);

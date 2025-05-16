@@ -18,6 +18,12 @@ class Employee extends Model
         'photo',
     ];
 
+   /**
+    * The code defines relationships between a hospital model and user model, appointments model, and
+    * includes an accessor for the full name attribute.
+    * 
+    * @return In the provided code snippet, three functions are defined within a class:
+    */
     public function hospital()
     {
         return $this->belongsTo(User::class, 'hospital_id');

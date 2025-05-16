@@ -20,6 +20,13 @@ class Appointment extends Model
     'attended',
 ];
 
+    /**
+     * The code defines two relationships where a record belongs to either a Pet or an Employee.
+     * 
+     * @return In the code snippet provided, two relationships are defined using Eloquent ORM in
+     * Laravel. The `pet()` method defines a "belongsTo" relationship with the `Pet` model, and the
+     * `employee()` method defines a "belongsTo" relationship with the `Employee` model.
+     */
     public function pet()
     {
         return $this->belongsTo(Pet::class);

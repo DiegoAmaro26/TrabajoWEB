@@ -81,6 +81,10 @@
 
 {{-- Script para alternar campos de mascota nueva --}}
 <script>
+/**
+ * The function `togglePetFields` dynamically toggles the display of registered and unregistered pet
+ * fields based on the selected option.
+ */
     const petOptionSelect = document.getElementById('pet-option');
     const registeredPetFields = document.getElementById('registered-pet-fields');
     const unregisteredPetFields = document.getElementById('unregistered-pet-fields');

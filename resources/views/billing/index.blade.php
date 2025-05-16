@@ -80,6 +80,10 @@
     let products = {!! json_encode($products) !!};
     let services = {!! json_encode($services) !!};
 
+    /**
+     * The `addProduct` function dynamically adds a new product row to a form with a dropdown list of
+     * products and a quantity input field.
+     */
     function addProduct() {
         let index = document.querySelectorAll('.product-row').length;
         let options = products.map(p => `<option value="${p.id}" data-price="${p.price}">${p.name} - ${p.price} €</option>`).join('');
@@ -95,6 +99,10 @@
         document.getElementById('product-list').insertAdjacentHTML('beforeend', html);
     }
 
+    /**
+     * The `addService` function dynamically adds a new service selection row to a form with options
+     * populated from a predefined list of services.
+     */
     function addService() {
         let index = document.querySelectorAll('.service-row').length;
         let options = services.map(s => `<option value="${s.id}" data-price="${s.price}">${s.name} - ${s.price} €</option>`).join('');
@@ -109,6 +117,10 @@
         document.getElementById('service-list').insertAdjacentHTML('beforeend', html);
     }
 
+    /**
+     * The function `updateTotal` calculates the total price based on selected products and services
+     * and updates the total display and input fields.
+     */
     function updateTotal() {
         let total = 0;
 
@@ -131,6 +143,9 @@
         document.getElementById('totalInput').value = total.toFixed(2);
     }
 
+    /* The `calculateTotal` function in the provided PHP code is responsible for calculating the total
+    price of the invoice based on the selected products and services. Here is a breakdown of what
+    the function does: */
     function calculateTotal() {
         updateTotal();
         let total = parseFloat(document.getElementById('totalInput').value || 0);

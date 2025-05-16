@@ -10,13 +10,16 @@ class Client extends Model
         'full_name', 'email', 'phone', 'address', 'photo', 'hospital_id'
     ];
 
-    // Relación inversa: un cliente pertenece a un hospital
+    /**
+     * The code defines relationships for a hospital model with users, pets, and invoices.
+     * 
+     * @return In the code snippet provided, three relationships are defined within a Laravel model:
+     */
     public function hospital()
     {
         return $this->belongsTo(User::class, 'hospital_id');
     }
 
-    // Relación con las mascotas
     public function pets()
     {
         return $this->hasMany(Pet::class);

@@ -45,6 +45,16 @@ class PetController extends Controller
         return redirect()->route('clients.index')->with('success', 'Mascota añadida correctamente.');
     }
 
+    /**
+     * The history function retrieves and displays the consultations for a given pet in a view.
+     * 
+     * @param Pet pet The `history` function takes a `Pet` object as a parameter. This function
+     * retrieves the consultations associated with the provided `Pet` object, orders them by the latest
+     * date, and then passes the `pet` and `consultations` data to the `pets.history` view for display.
+     * 
+     * @return The `history` function is returning a view called 'pets.history' along with the data of
+     * the pet and its consultations in a compact format.
+     */
     public function history(Pet $pet)
     {
         $consultations = $pet->consultations()->latest()->get();

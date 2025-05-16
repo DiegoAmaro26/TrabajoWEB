@@ -13,6 +13,16 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class BillingController extends Controller
 {
+    /**
+     * The index function retrieves clients associated with the logged-in user's hospital, along with
+     * all products and services, and passes them to the billing index view.
+     * 
+     * @return The `index` function is returning a view called 'billing.index' and passing three
+     * variables to the view: 'clients', 'products', and 'services'. The 'clients' variable contains a
+     * collection of Client models filtered by the hospital_id of the currently authenticated user. The
+     * 'products' variable contains all Product models, and the 'services' variable contains all
+     * Service models.
+     */
     public function index()
     {
         // Solo los clientes asociados al hospital del usuario logueado
@@ -24,6 +34,18 @@ class BillingController extends Controller
         return view('billing.index', compact('clients', 'products', 'services'));
     }
 
+    /**
+     * The function `store` validates and stores invoice data, associates products and services,
+     * generates a PDF invoice, and then downloads it.
+     * 
+     * @param Request request The `store` function you provided is responsible for storing a new
+     * invoice based on the data received in the request. Let's break down the process:
+     * 
+     * @return A PDF file containing the invoice details is being returned for download. The PDF is
+     * generated from the 'invoices.factura' view using the data of the created invoice. After the PDF
+     * is generated and downloaded, the function does not reach the redirect statement due to the
+     * previous return statement.
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -76,9 +98,6 @@ class BillingController extends Controller
         // Descargar directamente
         return $pdf->download('factura_' . $invoice->id . '.pdf');
         
-        // Alternativa: guardar en el servidor
-        // $path = storage_path('app/public/facturas/factura_' . $invoice->id . '.pdf');
-        // $pdf->save($path);
 
         return redirect()->route('invoices.index')->with('success', 'Factura generada correctamente.');
     }

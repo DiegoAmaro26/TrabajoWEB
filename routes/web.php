@@ -15,6 +15,8 @@ use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ServiceController;
 
+/* This PHP code defines various routes for a Laravel application. Here's a breakdown of what each part
+of the code is doing: */
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');

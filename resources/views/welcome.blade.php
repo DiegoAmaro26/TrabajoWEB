@@ -186,6 +186,10 @@
 </div>
 
 <script>
+    /**
+     * The function `moveSlide` changes the active slide by removing the 'active' class from the
+     * current slide and adding it to the next slide based on the direction parameter.
+     */
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
 

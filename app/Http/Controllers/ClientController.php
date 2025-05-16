@@ -95,7 +95,19 @@ class ClientController extends Controller
         return redirect()->route('clients.index')->with('success', 'Cliente actualizado correctamente.');
     }
 
-    // Buscar clientes sin hospital asignado
+    
+    /**
+     * The function searches for clients by email or phone number based on the provided query string.
+     * 
+     * @param Request request The `Request ` parameter in the `search` function is an instance
+     * of the Illuminate\Http\Request class. It represents an HTTP request that contains all the data
+     * and information about the incoming request, such as form input, headers, cookies, and files.
+     * 
+     * @return The search function is returning a view called 'clients.search' with the search results
+     * stored in the 'clients' variable. The search results are obtained by querying the 'Client' model
+     * where the 'hospital_id' is null and filtering by email or phone number based on the search query
+     * provided in the request.
+     */
     public function search(Request $request)
     {
         $request->validate([
@@ -113,7 +125,22 @@ class ClientController extends Controller
         return view('clients.search', compact('clients'));
     }
 
-    // Asignar un hospital a un cliente
+    
+    /**
+     * The function assigns a hospital to a client based on the currently logged-in user and then
+     * redirects to the clients index page with a success message.
+     * 
+     * @param Request request The `` parameter in the `assignHospital` function is an instance
+     * of the `Request` class, which represents an HTTP request. It contains all the data that was sent
+     * as part of the request, such as form input, headers, and files.
+     * @param Client client The `client` parameter in the `assignHospital` function is an instance of
+     * the `Client` model. It represents a client entity in the system, which likely has attributes
+     * such as `id`, `name`, `hospital_id`, etc. The function is responsible for assigning a hospital
+     * to the client
+     * 
+     * @return The `assignHospital` function is returning a redirect response to the `clients.index`
+     * route with a success message "Cliente asignado correctamente."
+     */
     public function assignHospital(Request $request, Client $client)
     {
         $client->hospital_id = Auth::user()->id; // Asignar el hospital del usuario logueado
