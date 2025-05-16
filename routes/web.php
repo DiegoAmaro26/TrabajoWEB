@@ -11,6 +11,9 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\ConsultationController;
 use App\Http\Controllers\HospitalizationNoteController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ServiceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -61,6 +64,15 @@ Route::get('appointments/create', [AppointmentController::class, 'create'])->nam
 Route::put('/appointments/{appointment}/mark-attended', [AppointmentController::class, 'markAttended'])->name('appointments.mark-attended');
 Route::delete('/appointments/{id}', [AppointmentController::class, 'destroy'])->name('appointments.destroy');
 
+
+Route::get('/billing', [InvoiceController::class, 'index'])->name('billing.index');
+Route::post('/billing', [InvoiceController::class, 'store'])->name('billing.store');
+
+Route::resource('products', ProductController::class);
+Route::resource('services', ServiceController::class);
+
+Route::get('/invoices', [InvoiceController::class, 'list'])->name('invoices.index');
+Route::get('/invoices/{invoice}/pdf', [InvoiceController::class, 'downloadPdf'])->name('invoices.pdf');
 
 
 

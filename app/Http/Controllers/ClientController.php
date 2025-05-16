@@ -14,6 +14,8 @@ class ClientController extends Controller
         // Obtener solo los clientes cuyo hospital_id coincide con el hospital del usuario logueado
         $clients = Client::where('hospital_id', Auth::user()->id)->get();
         
+        $full_name = $clients->pluck('full_name')->toArray();
+
         return view('clients.index', compact('clients'));
     }
 

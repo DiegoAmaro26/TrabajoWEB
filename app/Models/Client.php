@@ -21,5 +21,10 @@ class Client extends Model
     {
         return $this->hasMany(Pet::class);
     }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
 }
 

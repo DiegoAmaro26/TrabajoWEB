@@ -13,19 +13,26 @@
 <body class="flex flex-col min-h-screen bg-gray-50">
     {{-- NAVBAR --}}
     <header class="bg-gradient-to-r from-blue-700 to-blue-400 shadow-md relative z-10">
-        <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3 relative">
-            {{-- Logo --}}
-            <div class="flex items-center relative z-10">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            {{-- Izquierda: Logo + mensaje --}}
+            <div class="flex items-center space-x-4">
+                {{-- Logo --}}
                 <a href="{{ route('welcome') }}">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-12 w-auto" style="width:60px; height:auto;">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="h-12 w-auto" style="width:60px; height:auto;">
                 </a>
+                {{-- Diagonal Divider --}}
+                <div class="w-[2px] h-10 rotate-[20deg] bg-white/30"></div>
+
+                {{-- Bienvenida --}}
+                @auth
+                    <span class="text-white font-medium text-lg hidden sm:inline">
+                        Bienvenido a <span class="font-bold">PetMedicine</span>, <strong>{{ Auth::user()->name }}</strong>
+                    </span>
+                @endauth
             </div>
 
-            {{-- Diagonal Divider --}}
-            <div class="absolute left-[80px] top-0 bottom-0 w-[2px] rotate-[20deg] bg-white/30"></div>
-
-            {{-- Navigation --}}
-            <nav class="flex gap-6 items-center text-white font-semibold z-10">
+            {{-- Derecha: Navegación --}}
+            <nav class="flex gap-6 items-center text-white font-semibold">
                 @guest
                     <a href="{{ route('register') }}" class="hover:underline">Registrarse</a>
                     <a href="{{ route('login') }}" class="hover:underline">Conectarse</a>
@@ -35,8 +42,9 @@
                 @else
                     <a href="{{ route('clients.index') }}" class="hover:underline">Clientes</a>
                     <a href="{{ route('appointments.index') }}" class="hover:underline">Citas</a>
-                    <a href="{{ route('billing.index') }}" class="hover:underline">Facturación</a>
+                    <a href="{{ route('billing.index') }}" class="hover:underline">Cobro</a>
                     <a href="{{ route('employees.index') }}" class="hover:underline">Empleados</a>
+                    <a href="{{ route('invoices.index') }}" class="hover:underline">Facturas</a>
                     <form method="POST" action="{{ route('logout') }}" class="inline">
                         @csrf
                         <button type="submit" class="hover:underline">Logout</button>
