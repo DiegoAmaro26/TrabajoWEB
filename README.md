@@ -75,7 +75,7 @@ Rol: Desarrollador
 PetMedicine pretende ayudar en la gestion veterinaria a las empresas, ofreciendo un sistema dinamico y sencillo.
 No requiere de formacion previa para los empleados y la escalabilidad es infinita.
 
-A continuacion se detallan los requisitos, el metodo de instalacion, y la distribucion de los archivos.
+A continuacion se detallan los requisitos, el metodo de instalacion, la distribucion de los archivos, y la ejecución.
 
 ## Requisitos
 
@@ -116,3 +116,14 @@ Prueba los siguentes comandos en la terminal:
 ### Facturación
 - Creación de productos y servicios personalizados.
 - Generación automática de facturas con datos del hospital, cliente y productos/servicios usados.
+
+## Ejecucion
+Para lanzar la ejecicion del codigo recomiendo activar dos servidores.
+Esto permitira que el motor de laravel y el de node.js trabajen juntos y muestren los cambios al momento.
+
+- php artisan serve
+- npm run dev
+
+Para ello puedes usar la terminal que ofrece el IDE VisualStudio y la propia terminal del sistema operativo que utilices.
+Si solo activas uno de ellos, es posible que haya secciones de codigo que no se ejecuten correctamente.
+
