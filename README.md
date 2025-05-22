@@ -59,3 +59,60 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+####
+
+####
+
+# Autor
+
+Desarrollado por: Diego Amaro Lopez  
+Rol: Desarrollador
+
+# Sobre PETMEDICINE
+
+PetMedicine pretende ayudar en la gestion veterinaria a las empresas, ofreciendo un sistema dinamico y sencillo.
+No requiere de formacion previa para los empleados y la escalabilidad es infinita.
+
+A continuacion se detallan los requisitos, el metodo de instalacion, y la distribucion de los archivos.
+
+## Requisitos
+
+**Backend:** Laravel (PHP)
+**Frontend:** HTML, CSS, Tailwind CSS, JavaScript
+**Base de datos:** MySQL (XAMPP)
+**Servidor local:** XAMPP
+**Entorno de desarrollo:** Visual Studio Code
+
+## Instalacion
+
+Antes de continuar con el desarrolllo, debemos asegurarnos de tener todas las dependencias necesarias.
+Prueba los siguentes comandos en la terminal:
+
+    composer install
+    npm install
+
+## Distribucion del proyecto
+
+### Gestión de usuarios
+- Registro y login de hospitales veterinarios.
+- Acceso a una plataforma de gestión personalizada.
+
+### Gestión de clientes y mascotas
+- Crear, editar y eliminar clientes.
+- Asociar mascotas a clientes.
+- Historial médico de cada mascota.
+- Subida y almacenamiento de archivos relacionados (imágenes, documentos clínicos, etc.)
+
+### Gestión de empleados
+- Creación de fichas de empleados.
+- Asignación de actos realizados por cada empleado, asegurando trazabilidad.
+
+### Citas
+- Gestión de citas en tabla.
+- Visualización de la mascota asociada y motivo de consulta.
+
+### Facturación
+- Creación de productos y servicios personalizados.
+- Generación automática de facturas con datos del hospital, cliente y productos/servicios usados.

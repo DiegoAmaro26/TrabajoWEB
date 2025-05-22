@@ -77,8 +77,9 @@
 </div>
 
 <script>
-    let products = {!! json_encode($products) !!};
-    let services = {!! json_encode($services) !!};
+    // These variables are injected from PHP using Blade
+    let products = @json($products);
+    let services = @json($services);
 
     /**
      * The `addProduct` function dynamically adds a new product row to a form with a dropdown list of

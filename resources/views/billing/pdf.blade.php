@@ -78,9 +78,10 @@
     <div class="header">
         <img src="{{ public_path('images/logo.jpg') }}" alt="Logo">
         <div class="info">
-            <h2>{{ $invoice->client->hospital->name ?? 'Hospital Veterinario' }}</h2>
-            <p>Dirección: Calle Principal 123, Ciudad</p>
-            <p>Teléfono: 123 456 789</p>
+            <h2>{{ $invoice->client->user->name ?? 'Hospital Veterinario' }}</h2>
+            <p>{{ $invoice->client->user->address ?? '' }}</p>
+            <p>{{ $invoice->client->user->phone ?? '' }}</p>
+            <p>{{ $invoice->client->user->email ?? '' }}</p>
         </div>
     </div>
 
