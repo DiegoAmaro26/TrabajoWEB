@@ -27,34 +27,34 @@ class ClientController extends Controller
 
     // Guardar un nuevo cliente
     public function store(Request $request)
-{
-    $request->validate([
-        'full_name' => 'required|string|max:255',
-        'email' => 'required|email|unique:clients',
-        'phone' => 'nullable|string|max:20',
-        'address' => 'nullable|string|max:255',
-        'photo' => 'nullable|image|max:2048',
-    ]);
+    {
+        $request->validate([
+            'full_name' => 'required|string|max:255',
+            'email' => 'required|email|unique:clients',
+            'phone' => 'nullable|string|max:20',
+            'address' => 'nullable|string|max:255',
+            'photo' => 'nullable|image|max:2048',
+        ]);
 
-    $photoPath = null;
-    if ($request->hasFile('photo')) {
-        $photoPath = $request->file('photo')->store('client_photos', 'public');
+        $photoPath = null;
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('client_photos', 'public');
+        }
+
+        /** @var \App\Models\User $user */
+        $user = Auth::user();
+
+        $client = $user->clients()->create([
+            'full_name' => $request->full_name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'photo' => $photoPath,
+        ]);
+
+        return redirect()->route('pets.create', $client->id)
+            ->with('success', 'Cliente creado correctamente. Ahora añade su mascota.');
     }
-
-    /** @var \App\Models\User $user */
-    $user = Auth::user();
-
-    $client = $user->clients()->create([
-        'full_name' => $request->full_name,
-        'email' => $request->email,
-        'phone' => $request->phone,
-        'address' => $request->address,
-        'photo' => $photoPath,
-    ]);
-
-    return redirect()->route('pets.create', $client->id)
-        ->with('success', 'Cliente creado correctamente. Ahora añade su mascota.');
-}
 
 
     // Mostrar la vista para editar un cliente
